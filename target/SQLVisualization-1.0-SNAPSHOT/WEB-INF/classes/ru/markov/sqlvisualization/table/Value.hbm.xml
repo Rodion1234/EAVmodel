@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26.04.2019 10:58:23 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ru.markov.sqlvisualization.table.Value" table="value" catalog="eav" optimistic-lock="version">
+        <id name="idValue" type="java.lang.Integer">
+            <column name="id_value" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="attribute" class="ru.markov.sqlvisualization.table.Attribute" fetch="select">
+            <column name="id_attribute" not-null="true" />
+        </many-to-one>
+        <property name="value" type="string">
+            <column name="value" length="45" not-null="true" />
+        </property>
+        <property name="rowNumber" type="int">
+            <column name="row_number" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

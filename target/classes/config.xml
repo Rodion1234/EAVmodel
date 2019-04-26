@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+">
+
+    <bean id="hibUtil" class="ru.markov.sqlvisualization.hibernate.HibernateUtil"></bean>
+    
+    <bean id="hibWWDB" class="ru.markov.sqlvisualization.hibernate.HibernateWorkWithDB">
+          <constructor-arg ref="hibUtil"> </constructor-arg>
+    </bean>
+    
+    
+
+    
+</beans>
