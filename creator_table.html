@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SQL-EAV-Visualization</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' href='css_for_creator.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <div class="mainblock vertically">
+        <div class="header">
+
+            <div class="four">
+                <h1>This is page for create table in EAV model</h1>
+            </div>
+        </div>
+        <div class="mainInf vertically">
+            <div class="creator">
+                <form class="decor">
+                    <div class="form-left-decoration"></div>
+                    <div class="form-right-decoration"></div>
+                    <div class="circle"></div>
+                    <div class="form-inner">
+                        <h3>Create example table</h3>
+                        <input type="text" placeholder="Table Name">
+                        <div class="inp" id="inp_id">
+                            <div class="inpheader">
+                                <div class="inpheader-text">
+                                    <h3>Columns:</h3>
+                                </div>
+                                <div class="inpheader-text">
+                                    <input type="number" min="1" max="10" step="1" id="Num" value="1">
+                                    <span id="result"></span>
+                                </div>
+                                <script>
+                                    var input = document.getElementById("Num");
+                                    var newEl = document.createElement('div');
+                                    var oldNum = 1;
+                                    newEl.className = "inpmain";
+                                    newEl.innerHTML = "<input type=\"text\" placeholder=\"Column Name\">  <input type=\"text\" placeholder=\"Column Value\">";
+                                    input.oninput = function () {
+                                        var newNum = Number(input.value);
+                                        var parentEl = document.getElementById("inp_id");
+                                        if (newNum > 0 && newNum <= 10) {
+                                            if (newNum < oldNum) {
+                                                var num = oldNum - newNum;
+                                                var lengthParEl = parentEl.children.length;
+                                                for (var i = 1; i <= num; i++) {
+                                                    parentEl.removeChild(parentEl.children[lengthParEl - i]);
+                                                }
+                                            }
+                                            if (newNum > oldNum) {
+                                                var num = newNum - oldNum;
+                                                for (var i = 1; i <= num; i++) {
+                                                    parentEl.appendChild(newEl.cloneNode(true));
+                                                }
+                                            }
+                                            if (newNum == 0) {
+                                                // var num = newNum - oldNum;
+                                                parentEl.removeChild(parentEl.children[1]);
+                                            }
+                                            oldNum = newNum;
+                                        }
+                                    };
+                                </script>
+                            </div>
+                            <div class="inpmain">
+                                <input type="text" placeholder="Column Name">
+                                <input type="text" placeholder="Column Value">
+                            </div>
+                        </div>
+                        <textarea placeholder="Table comments..." rows="3"></textarea>
+                        <input type="submit" value="Send" id="sendId">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+
+</html>
