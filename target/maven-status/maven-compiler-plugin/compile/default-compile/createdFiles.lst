@@ -1,0 +1,6 @@
+ru\markov\sqlvisualization\hibernate\HibernateWorkWithDB.class
+ru\markov\sqlvisualization\table\Attribute.class
+ru\markov\sqlvisualization\table\Value.class
+ru\markov\sqlvisualization\hibernate\HibernateUtil.class
+ru\markov\sqlvisualization\table\Entity.class
+logics\TestHiber.class

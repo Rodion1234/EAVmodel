@@ -21,14 +21,14 @@
                 </div>
             </div>
             <div class="mainInf vertically">
-                <div class="creator">
+                <div >
                     <form class="decor">
                         <div class="form-left-decoration"></div>
                         <div class="form-right-decoration"></div>
                         <div class="circle"></div>
                         <div class="form-inner">
                             <h3>Create example table</h3>
-                            <input type="text" placeholder="Table Name">
+                            <input type="text" placeholder="Table Name" id="tableName">
                             <div class="inp" id="inp_id">
                                 <div class="inpheader">
                                     <div class="inpheader-text">
@@ -36,7 +36,6 @@
                                     </div>
                                     <div class="inpheader-text">
                                         <input type="number" min="1" max="10" step="1" id="Num" value="1">
-                                        <span id="result"></span>
                                     </div>
                                     <script>
                                         var input = document.getElementById("Num");
@@ -61,8 +60,7 @@
                                                         parentEl.appendChild(newEl.cloneNode(true));
                                                     }
                                                 }
-                                                if (newNum == 0) {
-                                                    // var num = newNum - oldNum;
+                                                if (newNum === 0) {
                                                     parentEl.removeChild(parentEl.children[1]);
                                                 }
                                                 oldNum = newNum;
@@ -71,12 +69,12 @@
                                     </script>
                                 </div>
                                 <div class="inpmain">
-                                    <input type="text" placeholder="Column Name">
-                                    <input type="text" placeholder="Column Value">
+                                    <input type="text" placeholder="Column Name" value="asd">
+                                    <input type="text" placeholder="Column Value" value="fsdf">
                                 </div>
                             </div>
                             <textarea placeholder="Table comments..." rows="3"></textarea>
-                            <input type="submit" value="Send">
+                            <input type="button" value="Send" id="sendId" onclick="funk()">
                         </div>
                     </form>
                 </div>

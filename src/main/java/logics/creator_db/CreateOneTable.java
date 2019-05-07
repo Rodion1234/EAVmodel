@@ -7,6 +7,8 @@ package logics.creator_db;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,14 +32,14 @@ public class CreateOneTable extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("utf8");
-        response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        //JsonObject jsonObj = (JsonObject) JsonValue.parse(request.getParameter("para"));
         System.out.println("put");
-        JSONObject obj = new JSONObject();
-        obj.put("message", "hello from server");
-        out.print(obj);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        JSONObject jsono =  new JSONObject();
+        jsono.put("obj", "value");
+        System.out.println(jsono.toString());
+        response.getWriter().write(jsono.toString());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
