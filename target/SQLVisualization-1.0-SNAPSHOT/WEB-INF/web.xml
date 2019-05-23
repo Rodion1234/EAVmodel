@@ -8,6 +8,10 @@
         <servlet-name>CreateOneTable</servlet-name>
         <servlet-class>logics.creator_db.CreateOneTable</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GenOneTable</servlet-name>
+        <servlet-class>logics.generator.GenOneTable</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestHiber</servlet-name>
         <url-pattern>/TestHiber</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>CreateOneTable</servlet-name>
         <url-pattern>/CreateOneTable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GenOneTable</servlet-name>
+        <url-pattern>/GenOneTable</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Page Title</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='css/gencss.css'>
+        <link rel='stylesheet' type='text/css' media='screen' href='css/css.css'>
+        <link rel='stylesheet' type='text/css' media='screen' href='css/textcss.css'>
+
+        <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        <script src='js/genjs.js'></script>
+    </head>
+
+    <body>
+
+        <div class="mainblock vertically">
+            <div class="header">
+
+                <div class="four">
+                    <h1>Hello! Do you want learn EAV model?</h1>
+                </div>
+            </div>
+            <div class="mainInf vertically">  
+                <div class="text">
+                    <b>Entity–attribute–value</b> model (EAV) is a very flexible data model used in various open source projects. This data model has many advantages and disadvantages so it is not suitable for wide application. But sometimes it is highly recommended to use EAV in design and development process. Cases are decribed, in which it is preferable to use EAV data model. EAV is completely compared with the standard relational data model and some examples of successfully integration EAV in ready-to-use open source solutions are given.   
+                </div>
+                <div class="text">
+                    The main advantages of the EAV data model are:
+                    <ul>
+                        <li>Flexible and universal data structure (you can change the number of properties without changing the fields in the table);</li>
+                        <li>Relative simplicity when adding or changing product characteristics;</li>
+                        <li>When properly implemented, data redundancy is almost absent.</li>
+                    </ul>
+                </div>
+                <table class="table_price" id="parEl1">
+                    <caption>Full DB with table</caption>
+                    <tr>
+                        <th>Entity</th>
+                        <th>Attribute</th>
+                        <th>Value</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="mainInf vertically">  
+                <div class="text">
+                    The main cons of EAV:
+                    <ul>
+                        <li>To insert data is usually used several queries;</li>
+                        <li>Not very fast data sampling in the case of implementation with a large number of tables and high server load with large amounts of data due to the inability to use standard indexing methods;</li>
+                        <li>Sometimes there are difficulties in ensuring data integrity.</li>
+                    </ul>  
+                </div>
+                <div class="mainInf horizontal">  
+                    <table class="table_price" id="parEl2">
+                        <caption>Entity</caption>
+                        <tr>
+                            <th>ID Entity</th>
+                            <th>Name Entity</th> 
+                        </tr>
+                    </table>
+                    <table class="table_price" id="parEl3">
+                        <caption>Attribute</caption>
+                        <tr>
+                            <th>ID Attribute</th>
+                            <th>Name Attribute</th>
+                            <th>ID Entity</th>
+                        </tr>
+                    </table>
+                    <table class="table_price" id="parEl4">
+                        <caption>Value</caption>
+                        <tr>
+                            <th>ID Value</th>
+                            <th>Name Value</th>
+                            <th>ID Attribute</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </body>
+</html>

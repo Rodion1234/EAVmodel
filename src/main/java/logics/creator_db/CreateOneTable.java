@@ -5,15 +5,24 @@
  */
 package logics.creator_db;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.application.Application;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.markov.sqlvisualization.hibernate.HibernateWorkWithDB;
+import ru.markov.sqlvisualization.table.Attribute;
+import ru.markov.sqlvisualization.table.Entity;
+import ru.markov.sqlvisualization.table.Value;
 
 /**
  *
@@ -32,14 +41,30 @@ public class CreateOneTable extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("put");
 
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        JSONObject jsono =  new JSONObject();
-        jsono.put("obj", "value");
-        System.out.println(jsono.toString());
-        response.getWriter().write(jsono.toString());
+        ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+        HibernateWorkWithDB withDB = context.getBean("hibWWDB", HibernateWorkWithDB.class);
+
+        JSONObject jObj = new JSONObject(request.getParameter("data"));
+        String nameEntity = jObj.getString("tableName");
+        JSONArray jSONArray = jObj.getJSONArray("columns");
+        System.out.println(nameEntity);
+        Entity entity = new Entity(nameEntity);
+        withDB.setEntity(entity);
+
+        for (int i = 0; i < jSONArray.length(); i++) {
+            JSONObject jsono = jSONArray.getJSONObject(i);
+            String nameAttribute = jsono.getString("column");
+            String valueName = jsono.getString("value");
+            int num = jsono.getInt("num");
+            System.out.println(nameAttribute + " " + valueName + " " + num);
+            Attribute attribute = new Attribute(entity, nameAttribute);
+            Value value = new Value(attribute, valueName, num);
+            withDB.setAttribute(attribute);
+            withDB.setValue(value);
+        }
+
+        response.getWriter().write("Успешно создана модель!");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,6 +79,7 @@ public class CreateOneTable extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("GET");
         processRequest(request, response);
     }
 
@@ -68,6 +94,7 @@ public class CreateOneTable extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("PUT");
         processRequest(request, response);
     }
 

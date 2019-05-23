@@ -28,6 +28,12 @@ public class Attribute implements java.io.Serializable {
         this.values = values;
     }
 
+    public Attribute(Integer idAttribute, String nameAttribute, Entity entity) {
+        this.entity = entity;
+        this.nameAttribute = nameAttribute;
+        this.idAttribute = idAttribute;
+    }
+
     public Integer getIdAttribute() {
         return this.idAttribute;
     }

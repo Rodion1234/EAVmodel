@@ -8,7 +8,6 @@ package ru.markov.sqlvisualization.table;
  */
 public class Value  implements java.io.Serializable {
 
-
      private Integer idValue;
      private Attribute attribute;
      private String value;
@@ -18,6 +17,14 @@ public class Value  implements java.io.Serializable {
     }
 
     public Value(Attribute attribute, String value, int rowNumber) {
+
+       this.attribute = attribute;
+       this.value = value;
+       this.rowNumber = rowNumber;
+    }
+    
+    public Value(Integer idValue,Attribute attribute, String value, int rowNumber) {
+       this.idValue = idValue;
        this.attribute = attribute;
        this.value = value;
        this.rowNumber = rowNumber;

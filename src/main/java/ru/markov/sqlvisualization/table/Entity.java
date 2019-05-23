@@ -26,6 +26,10 @@ public class Entity  implements java.io.Serializable {
        this.nameEntity = nameEntity;
        this.attributes = attributes;
     }
+    public Entity(Integer idEntity, String nameEntity) {
+       this.nameEntity = nameEntity;
+       this.idEntity = idEntity;
+    }
    
     public Integer getIdEntity() {
         return this.idEntity;
