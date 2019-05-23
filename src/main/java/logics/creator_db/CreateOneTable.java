@@ -41,30 +41,40 @@ public class CreateOneTable extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String dat = request.getParameter("data");
+        JSONObject jsonObj = new JSONObject();
+        if (dat.equals("") || dat == null) {
+            jsonObj.put("data", "Please, insert data!");
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
-        HibernateWorkWithDB withDB = context.getBean("hibWWDB", HibernateWorkWithDB.class);
+            response.getWriter().write(jsonObj.toString());
+        } else {
+            ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+            HibernateWorkWithDB withDB = context.getBean("hibWWDB", HibernateWorkWithDB.class);
 
-        JSONObject jObj = new JSONObject(request.getParameter("data"));
-        String nameEntity = jObj.getString("tableName");
-        JSONArray jSONArray = jObj.getJSONArray("columns");
-        System.out.println(nameEntity);
-        Entity entity = new Entity(nameEntity);
-        withDB.setEntity(entity);
+            JSONObject jObj = new JSONObject(request.getParameter("data"));
+            String nameEntity = jObj.getString("tableName");
+            JSONArray jSONArray = jObj.getJSONArray("columns");
+            System.out.println(nameEntity);
+            Entity entity = new Entity(nameEntity);
+            withDB.setEntity(entity);
 
-        for (int i = 0; i < jSONArray.length(); i++) {
-            JSONObject jsono = jSONArray.getJSONObject(i);
-            String nameAttribute = jsono.getString("column");
-            String valueName = jsono.getString("value");
-            int num = jsono.getInt("num");
-            System.out.println(nameAttribute + " " + valueName + " " + num);
-            Attribute attribute = new Attribute(entity, nameAttribute);
-            Value value = new Value(attribute, valueName, num);
-            withDB.setAttribute(attribute);
-            withDB.setValue(value);
+            for (int i = 0; i < jSONArray.length(); i++) {
+                JSONObject jsono = jSONArray.getJSONObject(i);
+                String nameAttribute = jsono.getString("column");
+                String valueName = jsono.getString("value");
+                int num = jsono.getInt("num");
+                System.out.println(nameAttribute + " " + valueName + " " + num);
+                Attribute attribute = new Attribute(entity, nameAttribute);
+                Value value = new Value(attribute, valueName, num);
+                withDB.setAttribute(attribute);
+                withDB.setValue(value);
+            }
+            jsonObj.put("data", "Table created successfully!");
+
+            response.getWriter().write(jsonObj.toString());
+
         }
 
-        response.getWriter().write("Успешно создана модель!");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
